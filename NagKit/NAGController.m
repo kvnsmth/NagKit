@@ -75,6 +75,12 @@ NSString * const NAGControllerApplicationLaunchEventName = @"NAGControllerApplic
 #if TARGET_IPHONE_SIMULATOR && 0
 #else
     
+    // Break and log if there is no app id
+    if (![self.appID length]) {
+        NSLog(@"[NagKit] No app identifier is set.");
+        return;
+    }
+    
     // Break if the alert has already been shown
     if ([self hasShownAlert]) {
         return;

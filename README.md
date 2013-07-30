@@ -8,6 +8,10 @@ If you're using CocoaPods, you can add `NagKit` to your Podfile. Otherwise, add 
 
 ## Usage
 
+Set your app identifier:
+
+    [[NAGController sharedController] setAppID:@"123456789"];
+
 NagKit automatically tracks application launch events on your behalf. Just set a threshold for `NAGControllerApplicationLaunchEventName` and it will do the rest.
 
 Set event thresholds:
