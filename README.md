@@ -10,41 +10,51 @@ If you're using CocoaPods, you can add `NagKit` to your Podfile. Otherwise, add 
 
 Set your app identifier:
 
-    [[NAGController sharedController] setAppID:@"123456789"];
+```objc
+[[NAGController sharedController] setAppID:@"123456789"];
+```
 
 NagKit automatically tracks application launch events on your behalf. Just set a threshold for `NAGControllerApplicationLaunchEventName` and it will do the rest.
 
 Set event thresholds:
 
-    [[NAGController sharedController] setThreshold:10 forEvent:NAGControllerApplicationLaunchEventName];
-    [[NAGController sharedController] setThreshold:10 forEvent:@"UserMashedThisButton"];
+```objc
+[[NAGController sharedController] setThreshold:10 forEvent:NAGControllerApplicationLaunchEventName];
+[[NAGController sharedController] setThreshold:10 forEvent:@"UserMashedThisButton"];
+```
 
 Fire events:
 
-    [[NAGController sharedController] pushEvent:@"UserMashedThisButton"];
+```objc
+[[NAGController sharedController] pushEvent:@"UserMashedThisButton"];
+```
 
 Implement `NAGControllerDelegate`:
 
-    - (void)controller:(NAGController *)controller willShowAlert:(UIAlertView *)alert {
-        alert.title = NSLocalizedString(@"NAG_USER_ALERT_TITLE", nil);
-        alert.message = NSLocalizedString(@"NAG_USER_ALERT_MESSAGE", nil);
-        alert.cancelButtonIndex = [alert addButtonWithTitle:NSLocalizedString(@"NAG_USER_ALERT_NO_THANKS", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"NAG_USER_ALERT_SURE", nil)];
-    }
-    
-    - (BOOL)controllerShouldShowAlert:(BOOL)controller {
-        return ([self isLoggedIn] && [self isReachable]);
-    }
-    
-    - (BOOL)controller:(NAGController *)controller shouldIncrementCountForEvent:(NSString *)name {
-        return [self isLoggedIn];
-    }
+```objc
+- (void)controller:(NAGController *)controller willShowAlert:(UIAlertView *)alert {
+    alert.title = NSLocalizedString(@"NAG_USER_ALERT_TITLE", nil);
+    alert.message = NSLocalizedString(@"NAG_USER_ALERT_MESSAGE", nil);
+    alert.cancelButtonIndex = [alert addButtonWithTitle:NSLocalizedString(@"NAG_USER_ALERT_NO_THANKS", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"NAG_USER_ALERT_SURE", nil)];
+}
+
+- (BOOL)controllerShouldShowAlert:(BOOL)controller {
+    return ([self isLoggedIn] && [self isReachable]);
+}
+
+- (BOOL)controller:(NAGController *)controller shouldIncrementCountForEvent:(NSString *)name {
+    return [self isLoggedIn];
+}
+```
 
 Maybe do reachability stuff:
 
-    - (void)reachabilityDidChange {
-        [[NAGController sharedController] showAlertIfNeeded];
-    }
+```objc
+- (void)reachabilityDidChange {
+    [[NAGController sharedController] showAlertIfNeeded];
+}
+```
 
 ## License
 
