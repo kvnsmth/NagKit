@@ -4,13 +4,7 @@ I generally don't like when apps ask me to rate them, but if it must, it might a
 
 ## Installation
 
-CocoaPods:
-
-    $ echo "pod 'NagKit'" >> Podfile
-    $ gem install cocoapods
-    $ pod install
-
-Or you can just add the `NagKit` folder to your Xcode project.
+If you're using CocoaPods, you can add `NagKit` to your Podfile. Otherwise, add a submodule or something and put the `NagKit` folder in your Xcode project.
 
 ## Usage
 
