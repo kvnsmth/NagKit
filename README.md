@@ -1,4 +1,3 @@
-rate-this-app
-=============
+# NagKit
 
-Prompt to rate an app based on configurable events.
+I generally don't like when apps ask me to rate them, but if it must, it might as well do it right.
