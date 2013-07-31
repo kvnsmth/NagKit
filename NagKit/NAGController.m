@@ -23,15 +23,14 @@ NSString * const NAGControllerApplicationLaunchEventName = @"NAGControllerApplic
 
 + (void)load {
 	@autoreleasepool {
-        NAGController *controller = [NAGController sharedController];
 		NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 		[center
-		 addObserver:controller
+		 addObserver:self
 		 selector:@selector(handleApplicationLaunchEvent:)
 		 name:UIApplicationWillEnterForegroundNotification
 		 object:nil];
         [center
-		 addObserver:controller
+		 addObserver:self
 		 selector:@selector(handleApplicationLaunchEvent:)
 		 name:UIApplicationDidFinishLaunchingNotification
 		 object:nil];
@@ -159,10 +158,10 @@ NSString * const NAGControllerApplicationLaunchEventName = @"NAGControllerApplic
 }
 
 
-- (void)handleApplicationLaunchEvent:(NSNotification *)notification {
++ (void)handleApplicationLaunchEvent:(NSNotification *)notification {
     UIApplication *app = [notification object];
     if (app.applicationState == UIApplicationStateInactive) {
-        [self pushEvent:NAGControllerApplicationLaunchEventName];
+        [[self sharedController] pushEvent:NAGControllerApplicationLaunchEventName];
     }
 }
 
