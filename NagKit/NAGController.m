@@ -61,8 +61,15 @@ NSString * const NAGControllerApplicationLaunchEventName = @"NAGControllerApplic
 
 
 - (void)pushEvent:(NSString *)name {
+    [self pushEvent:name deferAlert:NO];
+}
+
+
+- (void)pushEvent:(NSString *)name deferAlert:(BOOL)defer {
     [self incrementCountForEvent:name];
-    [self showAlertIfNeeded];
+    if (!defer) {
+        [self showAlertIfNeeded];
+    }
 }
 
 
@@ -161,7 +168,7 @@ NSString * const NAGControllerApplicationLaunchEventName = @"NAGControllerApplic
 + (void)handleApplicationLaunchEvent:(NSNotification *)notification {
     UIApplication *app = [notification object];
     if (app.applicationState == UIApplicationStateInactive) {
-        [[self sharedController] pushEvent:NAGControllerApplicationLaunchEventName];
+        [[self sharedController] pushEvent:NAGControllerApplicationLaunchEventName deferAlert:YES];
     }
 }
 

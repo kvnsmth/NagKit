@@ -18,6 +18,7 @@ extern NSString * const NAGControllerApplicationLaunchEventName;
 + (instancetype)sharedController;
 
 - (void)pushEvent:(NSString *)name;
+- (void)pushEvent:(NSString *)name deferAlert:(BOOL)defer;
 
 - (void)setThreshold:(NSUInteger)threshold forEvent:(NSString *)name;
 
